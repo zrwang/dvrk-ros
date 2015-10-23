@@ -31,7 +31,6 @@ void dvrk::add_topics_footpedal(mtsROSBridge & bridge,
         ("Cam+", "Button", ros_namespace + "/cam_plus_state");
     bridge.AddPublisherFromEventWrite<prmEventButton, std_msgs::Bool>
         ("Cam-", "Button", ros_namespace + "/cam_minus_state");
-
 }
 
 void dvrk::connect_bridge_footpedal(mtsROSBridge & bridge,
@@ -111,6 +110,10 @@ void dvrk::add_topics_mtm(mtsROSBridge & bridge,
         (mtm_component_name, "GripperPinchEvent", ros_namespace + "/gripper_pinch_event");
     bridge.AddPublisherFromEventWrite<bool, std_msgs::Bool>
         (mtm_component_name, "GripperClosedEvent", ros_namespace + "/gripper_closed_event");
+    bridge.AddSubscriberToCommandWrite<vctMatRot3, geometry_msgs::Quaternion>
+        (mtm_component_name, "DesiredOrientation", ros_namespace + "/desired_orientation");
+    bridge.AddSubscriberToCommandWrite<bool, std_msgs::Bool>
+        (mtm_component_name, "EnableRPYPID", ros_namespace + "/enable_rpy_pid");
 }
 
 void dvrk::connect_bridge_mtm(mtsROSBridge & bridge,

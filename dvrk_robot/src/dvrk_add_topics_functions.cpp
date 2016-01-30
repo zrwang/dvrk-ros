@@ -21,16 +21,20 @@ http://www.cisst.org/cisst/license.txt.
 void dvrk::add_topics_footpedals(mtsROSBridge & bridge,
                                  const std::string & ros_namespace)
 {
-    bridge.AddPublisherFromEventWrite<prmEventButton, std_msgs::Bool>
+    bridge.AddPublisherFromEventWrite<prmEventButton, cisst_msgs::BoolStamped>
         ("Clutch", "Button", ros_namespace + "/clutch");
-    bridge.AddPublisherFromEventWrite<prmEventButton, std_msgs::Bool>
+    bridge.AddPublisherFromEventWrite<prmEventButton, cisst_msgs::BoolStamped>
         ("Coag", "Button", ros_namespace + "/coag");
-    bridge.AddPublisherFromEventWrite<prmEventButton, std_msgs::Bool>
+    bridge.AddPublisherFromEventWrite<prmEventButton, cisst_msgs::BoolStamped>
         ("Camera", "Button", ros_namespace + "/camera");
-    bridge.AddPublisherFromEventWrite<prmEventButton, std_msgs::Bool>
+    bridge.AddPublisherFromEventWrite<prmEventButton, cisst_msgs::BoolStamped>
         ("Cam+", "Button", ros_namespace + "/camera_plus");
-    bridge.AddPublisherFromEventWrite<prmEventButton, std_msgs::Bool>
+    bridge.AddPublisherFromEventWrite<prmEventButton, cisst_msgs::BoolStamped>
         ("Cam-", "Button", ros_namespace + "/camera_minus");
+    bridge.AddPublisherFromEventWrite<prmEventButton, cisst_msgs::BoolStamped>
+        ("Head", "Button", ros_namespace + "/head");
+    bridge.AddPublisherFromEventWrite<prmEventButton, cisst_msgs::BoolStamped>
+        ("Bipolar", "Button", ros_namespace + "/bipolar");
 }
 
 void dvrk::connect_bridge_footpedals(mtsROSBridge & bridge,
@@ -53,6 +57,10 @@ void dvrk::connect_bridge_footpedals(const std::string & bridge_name,
                               io_component_name, "CAM+");
     componentManager->Connect(bridge_name, "Cam-",
                               io_component_name, "CAM-");
+    componentManager->Connect(bridge_name, "Head",
+                              io_component_name, "HEAD");
+    componentManager->Connect(bridge_name, "Bipolar",
+                              io_component_name, "BIPOLAR");
 }
 
 void dvrk::add_topics_arm(mtsROSBridge & bridge,
@@ -72,16 +80,16 @@ void dvrk::add_topics_arm(mtsROSBridge & bridge,
     bridge.AddPublisherFromCommandRead<prmStateJoint, sensor_msgs::JointState>
         (arm_component_name, "GetStateJointDesired",
          ros_namespace + "/state_joint_desired");
-    bridge.AddPublisherFromCommandRead<prmPositionCartesianGet, geometry_msgs::Pose>
+    bridge.AddPublisherFromCommandRead<prmPositionCartesianGet, geometry_msgs::PoseStamped>
         (arm_component_name, "GetPositionCartesianLocal",
          ros_namespace + "/position_cartesian_local_current");
-    bridge.AddPublisherFromCommandRead<prmPositionCartesianGet, geometry_msgs::Pose>
+    bridge.AddPublisherFromCommandRead<prmPositionCartesianGet, geometry_msgs::PoseStamped>
         (arm_component_name, "GetPositionCartesianLocalDesired",
          ros_namespace + "/position_cartesian_local_desired");
-    bridge.AddPublisherFromCommandRead<prmPositionCartesianGet, geometry_msgs::Pose>
+    bridge.AddPublisherFromCommandRead<prmPositionCartesianGet, geometry_msgs::PoseStamped>
         (arm_component_name, "GetPositionCartesian",
          ros_namespace + "/position_cartesian_current");
-    bridge.AddPublisherFromCommandRead<prmPositionCartesianGet, geometry_msgs::Pose>
+    bridge.AddPublisherFromCommandRead<prmPositionCartesianGet, geometry_msgs::PoseStamped>
         (arm_component_name, "GetPositionCartesianDesired",
          ros_namespace + "/position_cartesian_desired");
 
@@ -138,7 +146,7 @@ void dvrk::add_topics_mtm(mtsROSBridge & bridge,
     bridge.AddPublisherFromEventVoid
         (mtm_component_name, "GripperPinchEvent",
          ros_namespace + "/gripper_pinch_event");
-    bridge.AddPublisherFromEventWrite<bool, std_msgs::Bool>
+    bridge.AddPublisherFromEventWrite<bool, cisst_msgs::BoolStamped>
         (mtm_component_name, "GripperClosedEvent",
          ros_namespace + "/gripper_closed_event");
 }

@@ -73,6 +73,8 @@ dvrk::console::console(mtsROSBridge & bridge,
         dvrk::add_topics_teleop(bridge, mNameSpace + "/" + topic_name, name);
     }
 
+
+    ROS_INFO_STREAM("Footpedal = " << mConsole->mHasFootpedals);
     if (mConsole->mHasFootpedals) {
         dvrk::add_topics_footpedals(bridge, mNameSpace + "/footpedals");
     }

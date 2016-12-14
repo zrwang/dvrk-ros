@@ -1,3 +1,4 @@
+<!-- -*- mode: xml; -*- -->
 <launch>
 
   <arg name="ecm" default="ECM" />
@@ -7,7 +8,7 @@
   <arg name="psm_model" default="$(find dvrk_model)/model/$(arg psm).urdf.xacro" />
 
   <group ns="/dvrk/$(arg ecm)">
-      <arg name="gui" default="true" />
+      <arg name="gui" default="false" />
       <arg name="rate" default="20" />
 
       <param name="robot_description" command="rosrun xacro xacro.py $(arg ecm_model) prefix:=$(arg ecm)_" />
@@ -23,7 +24,7 @@
   </group>
 
   <group ns="/dvrk/$(arg psm)">
-      <arg name="gui" default="true" />
+      <arg name="gui" default="false" />
       <arg name="rate" default="20" />
 
       <param name="robot_description" command="rosrun xacro xacro.py $(arg psm_model) prefix:=$(arg psm)_" />

@@ -9,20 +9,20 @@
     <!-- Joint 0: Fixed to World-->
     <joint name="setup_fixed_joint" type="fixed">
       <parent link="${parent_link}"/>
-      <child link="${prefix}_setup_base_link"/>
+      <child link="${prefix}setup_base_link"/>
       <origin rpy="${rpy}" xyz="${xyz}"/>
     </joint>
 
-    <link name="${prefix}_setup_base_link"/>
+    <link name="${prefix}setup_base_link"/>
 
     <joint name="setup_tip_joint" type="fixed">
-      <parent link="${prefix}_setup_base_link"/>
-      <child link="${prefix}_setup_link"/>
+      <parent link="${prefix}setup_base_link"/>
+      <child link="${prefix}setup_link"/>
       <origin rpy="-0.87046370379 0 -${PI/2}" xyz="0.91324 -0.02111 0.03166"/>
       <axis xyz="0 0 1"/>
     </joint>
 
-    <link name="${prefix}_setup_link">
+    <link name="${prefix}setup_link">
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
@@ -40,16 +40,16 @@
 
     <!-- Joint 0: Fixed to Setup Joint-->
     <joint name="fixed_joint" type="fixed">
-      <parent link="${prefix}_setup_link"/>
-      <child link="${prefix}_base_link"/>
+      <parent link="${prefix}setup_link"/>
+      <child link="${prefix}base_link"/>
       <origin rpy="0 0 0" xyz="0 0.603 0"/>
     </joint>
-    <link name="${prefix}_base_link"/>
+    <link name="${prefix}base_link"/>
 
     <!-- Joint 1: Outer Yaw -->
     <joint name="outer_yaw" type="revolute">
-      <parent link="${prefix}_base_link"/>
-      <child link="${prefix}_yaw_link"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}yaw_link"/>
       <origin rpy="0 -${PI/2} ${PI/2}" xyz="0 0 0"/>
       <axis xyz="0 0 1"/>
       <!--rotates about z axis-->
@@ -58,7 +58,7 @@
       <joint_properties damping="1.0" friction="0.0"/>
     </joint>
 
-    <link name="${prefix}_yaw_link">
+    <link name="${prefix}yaw_link">
       <visual>
         <origin rpy="0 0 -${PI/2}" xyz="0.0 0 0.603"/>
         <geometry>
@@ -77,25 +77,25 @@
 
     <!-- Joint 2: Pitch -->
     <joint name="outer_pitch" type="revolute">
-      <parent link="${prefix}_yaw_link"/>
-      <child link="${prefix}_pitch_link"/>
+      <parent link="${prefix}yaw_link"/>
+      <child link="${prefix}pitch_link"/>
       <origin rpy="-${PI/2} -${PI/2} 0" xyz="0 0 0"/>
       <axis xyz="0 0 1"/>
       <limit effort="100.0" lower="${-PI/4}" upper="${PI*65/180}" velocity="10"/>
       <joint_properties damping="1.0" friction="0.0"/>
     </joint>
-    <link name="${prefix}_pitch_link"/>
+    <link name="${prefix}pitch_link"/>
 
     <joint name="outer_pitch_0" type="continuous">
-      <parent link="${prefix}_yaw_link"/>
-      <child link="${prefix}_pitch_link_1"/>
+      <parent link="${prefix}yaw_link"/>
+      <child link="${prefix}pitch_link_1"/>
       <origin rpy="-${PI/2} -${PI/2} 0" xyz="0 0 0.378"/>
       <axis xyz="0 0 1"/>
       <joint_properties damping="1.0" friction="0.0"/>
       <mimic joint="outer_pitch" multiplier="1"/>
     </joint>
 
-    <link name="${prefix}_pitch_link_1">
+    <link name="${prefix}pitch_link_1">
       <visual>
         <origin rpy="${PI} 0 ${PI*78.5/180}" xyz="0.0 0 0.0"/>
         <geometry>
@@ -116,15 +116,15 @@
     </link>
 
     <joint name="outer_pitch_1" type="continuous">
-      <parent link="${prefix}_pitch_link_1"/>
-      <child link="${prefix}_pitch_link_2"/>
+      <parent link="${prefix}pitch_link_1"/>
+      <child link="${prefix}pitch_link_2"/>
       <origin rpy="0 0 0" xyz="0.0558629 0.274575 0"/>
       <axis xyz="0 0 1"/>
       <joint_properties damping="1.0" friction="0.0"/>
       <mimic joint="outer_pitch" multiplier="-1"/>
     </joint>
 
-    <link name="${prefix}_pitch_link_2">
+    <link name="${prefix}pitch_link_2">
       <visual>
         <origin rpy="0 0 0" xyz="0.0 0 -0.0225"/>
         <geometry>
@@ -145,15 +145,15 @@
     </link>
 
     <joint name="outer_pitch_2" type="continuous">
-      <parent link="${prefix}_pitch_link_2"/>
-      <child link="${prefix}_pitch_link_3"/>
+      <parent link="${prefix}pitch_link_2"/>
+      <child link="${prefix}pitch_link_3"/>
       <origin rpy="0 0 0" xyz="-0.340 0 0"/>
       <axis xyz="0 0 1"/>
       <joint_properties damping="1.0" friction="0.0"/>
       <mimic joint="outer_pitch" multiplier="1"/>
     </joint>
 
-    <link name="${prefix}_pitch_link_3">
+    <link name="${prefix}pitch_link_3">
       <visual>
         <origin rpy="0 0 -${PI/2}" xyz="0.0 0 0.025"/>
         <geometry>
@@ -175,15 +175,15 @@
 
     <!-- Joint 3: Insertion -->
     <joint name="insertion" type="prismatic">
-      <parent link="${prefix}_pitch_link"/>
-      <child link="${prefix}_insertion_link"/>
+      <parent link="${prefix}pitch_link"/>
+      <child link="${prefix}insertion_link"/>
       <origin rpy="${PI/2} 0 0" xyz="0 0.3822 0"/>
       <axis xyz="0 0 1"/>
       <joint_properties damping="1.0" friction="0.0"/>
       <limit effort="100.0" lower="0" upper="0.235" velocity="10"/>
     </joint>
 
-    <link name="${prefix}_insertion_link">
+    <link name="${prefix}insertion_link">
       <visual>
         <origin rpy="0 0 -${PI/2}" xyz="0.0 0 -0.015"/>
         <geometry>
@@ -201,15 +201,15 @@
 
     <!-- Joint 4: Roll -->
     <joint name="outer_roll" type="revolute">
-      <parent link="${prefix}_insertion_link"/>
-      <child link="${prefix}_roll_link"/>
+      <parent link="${prefix}insertion_link"/>
+      <child link="${prefix}roll_link"/>
       <origin rpy="0 0 0" xyz="0 0 0.3829"/>
       <axis xyz="0 0 1"/>
       <joint_properties damping="1.0" friction="0.0"/>
       <limit effort="100.0" lower="-${PI/2}" upper="${PI/2}" velocity="10"/>
     </joint>
 
-    <link name="${prefix}_roll_link">
+    <link name="${prefix}roll_link">
       <visual>
         <origin rpy="0 0 ${PI/2}" xyz="0.0 0 -0.3979"/>
         <geometry>

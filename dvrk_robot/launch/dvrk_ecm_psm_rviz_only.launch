@@ -24,7 +24,7 @@
   </group>
 
   <group ns="/dvrk/$(arg psm)">
-      <arg name="gui" default="false" />
+      <arg name="gui" default="true" />
       <arg name="rate" default="20" />
 
       <param name="robot_description" command="rosrun xacro xacro.py $(arg psm_model) prefix:=$(arg psm)_" />

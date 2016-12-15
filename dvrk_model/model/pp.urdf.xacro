@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<robot name="dvrk_psm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="pp" params="prefix parent_link xyz rpy">
+    <!-- init joint -->
+    <joint name="init" type="fixed">
+      <parent link="${parent_link}"/>
+      <child link="t_x"/>
+      <origin rpy="${rpy}" xyz="${xyz}"/>
+    </joint>
+
+    <link name="t_x"/>
+
+    <joint name="x" type="prismatic">
+      <parent link="t_x"/>
+      <child link="t_y"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <limit lower="-1.0" upper="1.0" velocity=".4" effort="1000"/>
+      <axis xyz="1 0 0"/>
+    </joint>
+    
+    <link name="t_y"/>
+
+    <joint name="y" type="prismatic">
+      <parent link="t_y"/>
+      <child link="t_z"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <limit lower="-1.0" upper="1.0" velocity=".4" effort="1000"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+    
+    <link name="t_z"/>
+
+    <joint name="z" type="prismatic">
+      <parent link="t_z"/>
+      <child link="R_x"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <limit lower="-1.0" upper="1.0" velocity=".4" effort="1000"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="R_x"/>
+
+    <joint name="yaw" type="revolute">
+      <parent link="R_x"/>
+      <child link="platform"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <limit lower="-1.5707" upper="1.5707" velocity=".4" effort="1000"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="platform"/>
+
+  </xacro:macro>
+
+</robot>

@@ -2,6 +2,7 @@
 <robot name="dvrk_psm" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Macros -->
+  <xacro:include filename="$(find dvrk_model)/model/pp.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/model/psm.base.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/model/psm.tool.sca.urdf.xacro"/>
   <xacro:include filename="$(find dvrk_model)/model/psm.tool.caudier.urdf.xacro"/>
@@ -12,6 +13,22 @@
         prefix="${prefix}"
         parent_link="${parent_link}"
         xyz="${xyz}" rpy="${rpy}"/>
+    <xacro:psm_tool_sca
+        prefix="${prefix}"/>
+  </xacro:macro>
+
+
+  <!-- Macro for psm with sca on a positioning platform -->
+  <xacro:macro name="pp_psm_sca" params="prefix parent_link xyz rpy">
+    <xacro:pp
+	prefix="${prefix}"
+	parent_link="${parent_link}"
+	xyz="${xyz}" rpy="${rpy}"
+	/>
+    <xacro:psm
+        prefix="${prefix}"
+        parent_link="platform"
+        xyz="0 0 0" rpy="0 0 0"/>
     <xacro:psm_tool_sca
         prefix="${prefix}"/>
   </xacro:macro>

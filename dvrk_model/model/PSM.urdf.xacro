@@ -5,7 +5,7 @@
   <xacro:include filename="$(find dvrk_model)/model/psm.urdf.xacro"/>
 
   <link name="world"/>
-  <xacro:psm_sca
+  <xacro:pp_psm_sca
       prefix="$(arg prefix)"
       parent_link="world"
       xyz="1.25 -0.25 -0.66"

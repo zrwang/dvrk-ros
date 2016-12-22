@@ -9,18 +9,6 @@ Panels:
         - /TF1
         - /TF1/Frames1
         - /TF1/Tree1
-        - /TF1/Tree1/world1
-        - /TF1/Tree1/world1/ECM_setup_base_link1/ECM_setup_link1
-        - /TF1/Tree1/world1/ECM_setup_base_link1/ECM_setup_link1/ECM_base_link1
-        - /TF1/Tree1/world1/t_x1
-        - /TF1/Tree1/world1/t_x1/t_y1
-        - /TF1/Tree1/world1/t_x1/t_y1/t_z1
-        - /TF1/Tree1/world1/t_x1/t_y1/t_z1/R_x1
-        - /TF1/Tree1/world1/t_x1/t_y1/t_z1/R_x1/platform1
-        - /TF1/Tree1/world1/t_x1/t_y1/t_z1/R_x1/platform1/PSM_base_link1
-        - /TF1/Tree1/world1/t_x1/t_y1/t_z1/R_x1/platform1/PSM_base_link1/PSM_outer_yaw_link1
-        - /TF1/Tree1/world1/t_x1/t_y1/t_z1/R_x1/platform1/PSM_base_link1/PSM_outer_yaw_link1/PSM_outer_pitch_link1
-        - /TF1/Tree1/world1/t_x1/t_y1/t_z1/R_x1/platform1/PSM_base_link1/PSM_outer_yaw_link1/PSM_outer_pitch_link1/PSM_tool_main_link1
       Splitter Ratio: 0.886677
     Tree Height: 759
   - Class: rviz/Selection
@@ -69,11 +57,13 @@ Visualization Manager:
       Frames:
         All Enabled: false
         ECM_base_link:
+          Value: false
+        ECM_camera:
           Value: true
         ECM_insertion_link:
-          Value: true
+          Value: false
         ECM_pitch_link:
-          Value: true
+          Value: false
         ECM_pitch_link_1:
           Value: false
         ECM_pitch_link_2:
@@ -81,15 +71,15 @@ Visualization Manager:
         ECM_pitch_link_3:
           Value: false
         ECM_roll_link:
-          Value: true
+          Value: false
         ECM_setup_base_link:
           Value: false
         ECM_setup_link:
           Value: false
         ECM_yaw_link:
-          Value: true
+          Value: false
         PSM_base_link:
-          Value: true
+          Value: false
         PSM_outer_insertion_link:
           Value: false
         PSM_outer_pitch_back_link:
@@ -99,17 +89,17 @@ Visualization Manager:
         PSM_outer_pitch_front_link:
           Value: false
         PSM_outer_pitch_link:
-          Value: true
+          Value: false
         PSM_outer_pitch_top_link:
           Value: false
         PSM_outer_yaw_link:
-          Value: true
+          Value: false
         PSM_tool_main_link:
-          Value: true
+          Value: false
         PSM_tool_tip_link:
           Value: false
         PSM_tool_wrist_link:
-          Value: true
+          Value: false
         PSM_tool_wrist_sca_ee_link_0:
           Value: false
         PSM_tool_wrist_sca_ee_link_1:
@@ -148,7 +138,8 @@ Visualization Manager:
                   ECM_pitch_link:
                     ECM_insertion_link:
                       ECM_roll_link:
-                        {}
+                        ECM_camera:
+                          {}
                   ECM_pitch_link_1:
                     ECM_pitch_link_2:
                       ECM_pitch_link_3:
@@ -191,6 +182,10 @@ Visualization Manager:
       Links:
         All Links Enabled: true
         ECM_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        ECM_camera:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -410,10 +405,10 @@ Visualization Manager:
         Z: -0.223279
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.409797
+      Pitch: 0.169797
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.167244
+      Yaw: 0.457231
     Saved: ~
 Window Geometry:
   Displays:

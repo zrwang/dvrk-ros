@@ -54,7 +54,8 @@
       <axis xyz="0 0 1"/>
       <!--rotates about z axis-->
       <!--limit effort and velocity picked arbitrarily check-->
-      <limit effort="50.0" lower="${-75/180*PI}" upper="${PI/4}" velocity="2"/>
+      <!-- <limit effort="50.0" lower="${-75/180*PI}" upper="${PI/4}" velocity="2"/> -->
+      <limit effort="50.0" lower="${-PI/4}" upper="${PI/4}" velocity="2"/>
       <joint_properties damping="1.0" friction="0.0"/>
     </joint>
 
@@ -224,6 +225,14 @@
         </geometry>
       </collision>
     </link>
+
+    <joint name="handToCam" type="fixed">
+      <parent link="${prefix}roll_link"/>
+      <child link="${prefix}camera"/>
+      <origin rpy="-0.0129 0.0136 1.5374" xyz="0.000702 -0.0029 0.0036"/>
+    </joint>
+
+    <link name="${prefix}camera"/>
 
   </xacro:macro>
 

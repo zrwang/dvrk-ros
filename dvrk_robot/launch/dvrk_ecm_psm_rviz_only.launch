@@ -39,7 +39,16 @@
       <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
   </group>
 
-  <node name="rviz" pkg="rviz" type="rviz"
-  	args="-d $(find dvrk_model)/rviz_config/$(arg ecm)-$(arg psm).rviz" />
+  <group ns="endoscope">
+    <node pkg="fakecam" type="fakecam_node" name="fakecam_node">
+      <param name="calibration_file_uri" value="package://fakecam/data/camera_parameters.txt"/>
+      <param name="camera_name" value="fake_stereo"/>
+    </node>
+    <node pkg="tf" type="static_transform_publisher" name="fakecam_static_publishter"
+	  args="0 0 0 0 0 0 /ECM_camera /fake_camera_link 200"/>
+
+    <node name="rviz" pkg="rviz" type="rviz"
+	  args="-d $(find dvrk_model)/rviz_config/$(arg ecm)-$(arg psm).rviz" />
+  </group>
 
 </launch>

@@ -115,7 +115,7 @@ Visualization Manager:
         R_x:
           Value: false
         fake_cam_left_optical_link:
-          Value: true
+          Value: false
         fake_cam_right_optical_link:
           Value: false
         fake_camera_link:
@@ -426,15 +426,15 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.787134
-        Y: 0.0326487
-        Z: -0.37447
+        X: 0.710312
+        Y: -0.0668259
+        Z: -0.288258
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 1.5698
+      Pitch: 0.429797
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.70542
+      Yaw: 5.94542
     Saved: ~
 Window Geometry:
   Camera:
@@ -454,5 +454,5 @@ Window Geometry:
   Views:
     collapsed: true
   Width: 1676
-  X: 3600
+  X: 1920
   Y: 18

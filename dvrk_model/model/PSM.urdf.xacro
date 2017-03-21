@@ -8,7 +8,7 @@
   <xacro:pp_psm_sca
       prefix="$(arg prefix)"
       parent_link="world"
-      xyz="1 -0.1 -0.9"
-      rpy="0.0 0.0 -1"/>
+      xyz="1.2 -0.08 -0.5"
+      rpy="0.0 0.0 -0.5"/>
 
 </robot>
